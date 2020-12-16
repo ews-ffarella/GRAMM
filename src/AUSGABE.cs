@@ -146,13 +146,16 @@ namespace GRAMM_2001
 
             //differentiating between intermediate output and final output in case of meteopgt.all input
             string wndfilename;
+            string wndExtrafilename;
             if (intermediate == false)
             {
                 wndfilename = (Convert.ToString(Program.IWETTER).PadLeft(5, '0') + ".wnd");
+                wndExtrafilename = (Convert.ToString(Program.IWETTER).PadLeft(5, '0') + ".ewnd");
             }
             else
             {
                 wndfilename = (Convert.ToString(Program.IWETTER).PadLeft(5, '0') + ".wnd");
+                wndExtrafilename = (Convert.ToString(Program.IWETTER).PadLeft(5, '0') + ".ewnd");
                 //intermediate output in case of meteopgt.all
                 if (((METEO == "Y") || (METEO == "y")) && (Program.ISTAT == 0))
                 {
@@ -165,15 +168,74 @@ namespace GRAMM_2001
                     }
                     Meteopgtall.meteopgtall_calculate(Program.meteopgt_nr, Program.IWETTER, Program.DTI, time_real, Program.IOUTPUT, Program.TLIMIT2, ref FILENUMBER);
                     wndfilename = (Convert.ToString(FILENUMBER).PadLeft(5, '0') + ".wnd");
+                    wndExtrafilename = (Convert.ToString(FILENUMBER).PadLeft(5, '0') + ".ewnd");
                 }
             }
 
             Console.Write(wndfilename + "  "); // write windfile name to the console
 
+            bool writeExtra = true;
+
             BinaryWriter writer = new BinaryWriter(File.Open(wndfilename, FileMode.Create));
             int header = -1;
             Int16 dummy;
+            Int32 dummy2;
             float GRAMMhorgridsize = (float)Program.DDX[1];
+
+            if (writeExtra)
+            {
+                Console.Write(wndExtrafilename + "  "); // write windfile name to the console
+                BinaryWriter ewriter = new BinaryWriter(File.Open(wndExtrafilename, FileMode.Create));
+                ewriter.Write(header);
+                ewriter.Write(NI);
+                ewriter.Write(NJ);
+                ewriter.Write(NK);
+                ewriter.Write(GRAMMhorgridsize);
+                for (int i = 1; i <= NI; i++)
+                    for (int j = 1; j <= NJ; j++)
+                        for (int k = 1; k <= NK; k++)
+                        {
+                            try
+                            {
+                                dummy = Convert.ToInt16(Program.TE[i][j][k] * 10000.0);
+                            }
+                            catch
+                            {
+                                dummy = Int16.MaxValue;
+                            }
+                            ewriter.Write(dummy);
+
+                            try
+                            {
+                                dummy = Convert.ToInt16(Program.DISS[i][j][k] * 1000000.0);
+                            }
+                            catch
+                            {
+                                dummy = Int16.MaxValue;
+                            }
+                            ewriter.Write(dummy);
+                            try
+                            {
+                                dummy = Convert.ToInt16(Program.DP[i][j][k] * 100.0);
+                            }
+                            catch
+                            {
+                                dummy = Int16.MaxValue;
+                            }
+                            ewriter.Write(dummy);
+                            try
+                            {
+                                dummy = Convert.ToInt16((Program.TABS[i][j][k] - 273.15) * 100.0);
+                            }
+                            catch
+                            {
+                                dummy = Int16.MaxValue;
+                            }
+                            ewriter.Write(dummy);
+                        }
+                ewriter.Close();
+                ewriter.Dispose();
+            }
 
             //there are two different formats: IOUTPUT = 0 (standard output for GRAL-GUI users) and IOUTPUT = 3 for SOUNDPLAN USERS
             if (Program.IOUT == 0)
