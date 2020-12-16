@@ -14,8 +14,8 @@ publish_linux:
 .PHONY: clean
 clean:
 	dotnet clean src
-	rm -rf ./src/bin
-	rm -rf ./src/obj
+	rm -rf ./src/bin | true
+	rm -rf ./src/obj | true
 
 .PHONY: test_a_coarse
 test_a_coarse: publish
