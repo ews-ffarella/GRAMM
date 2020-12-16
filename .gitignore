@@ -15,6 +15,13 @@ test/**/DispNrGramm.txt
 test/**/PercentGramm.txt
 test/**/Max_Proc.txt
 test/**/LogFile_*.txt
+test/**/*_steady_state*.txt
+test/**/TPI_*.txt
+test/**/Topography.txt
+test/**/AllSituations*.met
+test/**/GRAMM*.exe
+test/**/GRAMM.dat
+test/**/windfeld.txt
 
 # Python
 .pytest_cache
