@@ -198,9 +198,13 @@ namespace GRAMM_2001
                 }
                 //2.9.2019 Öt
 
+
+
                 Program.TerminalOut++;
                 if (Program.TerminalOut >= TerminalThreshold) // if Counter is even
                 {
+                    writeProbes();
+
                     //output to screen
                     string LOGT = "-";
                     string LOGH = "-";
