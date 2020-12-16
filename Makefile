@@ -17,6 +17,17 @@ clean:
 	rm -rf ./src/bin | true
 	rm -rf ./src/obj | true
 
+.PHONY: test_clean
+test_clean:
+	find test -name "*.*wnd" -type f | xargs rm -f
+	find test -name "*.probes.dat" -type f | xargs rm -f
+	find test -name "*.scl" -type f | xargs rm -f
+	find test -name "*_steady_state.txt" -type f | xargs rm -f
+	find test -name "albeq.dat" -type f | xargs rm -f
+	find test -name "Logfile_GRAMMCore.txt" -type f | xargs rm -f
+	find test -name "PercentGramm.txt" -type f | xargs rm -f
+	
+
 .PHONY: test_a_coarse
 test_a_coarse: publish
 	./src/bin/Release/netcoreapp3.1/win10-x64/publish/GRAMM.exe "./test/Askervein_coarse" 1 7
