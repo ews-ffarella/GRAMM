@@ -80,13 +80,14 @@ namespace GRAMM_2001
                     {
 
                         string[] text = new string[10];
+                         // TODO: We should define WINDGE with the height as well!
                         text = myreader.ReadLine().Split(new char[] { ' ', ';', ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                         text = myreader.ReadLine().Split(new char[] { ' ', ';', ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                         for (int inid = 1; inid <= Ori_Weather_nr; inid++)
                         {
                             text = myreader.ReadLine().Split(new char[] { ' ', ';', ',', '\t' }, StringSplitOptions.RemoveEmptyEntries);
                             double WINDGE = Math.Max(Convert.ToDouble(text[1].Replace(".", Program.decsep)), 0.001);
-                            double WINDDIR = Convert.ToDouble(text[0].Replace(".", Program.decsep)) * 10;
+                            double WINDDIR = Convert.ToDouble(text[0].Replace(".", Program.decsep)) * 10; // TODO: Do we want this?
                             int AKLA = Convert.ToInt16(text[2]);
                             double ITIME = TLIMIT2;
                             Integrationtime(AKLA, WINDGE, TLIMIT2, Ori_Weather_nr, ref ITIME);
