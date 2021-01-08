@@ -183,7 +183,7 @@ namespace GRAMM_2001
                     //obtain western and southern borders of the model domain and the angle (not used anymore) between the main model domain axis and north
                     IKOOA = readbin.ReadInt32();
                     JKOOA = readbin.ReadInt32();
-                    double winkel = readbin.ReadDouble(); // angle not used
+                    GridRotation = readbin.ReadDouble(); // angle not used
                 } // Using
 
             }
@@ -382,7 +382,7 @@ namespace GRAMM_2001
 
                         Program.IKOOA = Convert.ToInt32(Is_Binary[0]);
                         Program.JKOOA = Convert.ToInt32(Is_Binary[1]);
-                        double winkel = Convert.ToDouble(Is_Binary[2].Replace(".", Program.decsep));
+                        GridRotation = Convert.ToDouble(Is_Binary[2].Replace(".", Program.decsep));
                     }
                 }
             }
@@ -404,6 +404,119 @@ namespace GRAMM_2001
                 Console.WriteLine("Field dimensions in z-direction of 'GRAMM.geb' and 'ggeom.asc' are different");
                 return;
             }
+
+
+            float IKOOE;
+            float JKOOE;
+            IKOOE = (float)IKOOA;
+            JKOOE = (float)JKOOA;
+
+            for (int i = 1; i < Program.NX + 1; i++)
+            {
+                IKOOE = IKOOE + DDX[i];
+            }
+            for (int i = 1; i < Program.NY + 1; i++)
+            {
+                JKOOE = JKOOE + DDY[i];
+            }
+            Program.IKOOE = (Int32)Math.Round(IKOOE);
+            Program.JKOOE = (Int32)Math.Round(JKOOE);
+
+            float dd = DDX[1];
+            Program.GridHasXYGrading = false;
+            for (int i = 2; i < NX + 1; i++)
+            {
+                if (Math.Abs(Program.DDX[i] - dd) > 0.00001F)
+                {
+                    Program.GridHasXYGrading = true;
+                    break;
+                }
+            }
+            if (!Program.GridHasXYGrading)
+            {
+                dd = DDY[1];
+                for (int i = 2; i < NY + 1; i++)
+                {
+                    if (Math.Abs(Program.DDY[i] - dd) > 0.00001F)
+                    {
+                        Program.GridHasXYGrading = true;
+                        break;
+                    }
+                }
+            }
+
+            if (Program.GridHasXYGrading)
+            {
+                float maxddx = -1000000.0F;
+                float minddx = 1000000.0F;
+                float maxddy = -1000000.0F;
+                float minddy = 1000000.0F;
+                for (int i = 1; i < NX + 1; i++)
+                {
+                    if (Program.DDX[i] > maxddx)
+                    {
+                        maxddx = Program.DDX[i];
+                    }
+                    if (Program.DDX[i] < minddx)
+                    {
+                        minddx = Program.DDX[i];
+                    }
+                }
+                for (int i = 1; i < NY + 1; i++)
+                {
+                    if (Program.DDY[i] > maxddy)
+                    {
+                        maxddy = Program.DDY[i];
+                    }
+                    if (Program.DDY[i] < minddy)
+                    {
+                        minddy = Program.DDY[i];
+                    }
+                }
+                Program.DDXMIN = minddx;
+                Program.DDXMAX = maxddx;
+                Program.DDYMIN = minddy;
+                Program.DDYMAX = maxddy;
+            }
+            else
+            {
+                Program.DDXMIN = DDX[1];
+                Program.DDXMAX = DDX[1];
+                Program.DDYMIN = DDY[1];
+                Program.DDYMAX = DDY[1];
+
+            }
+
+            string x = (
+            "Mesh DX:                            " + Program.DDX[1].ToString("0.0").Replace(decsep, ".") + '\n' +
+            "Mesh DY:                            " + Program.DDY[1].ToString("0.0").Replace(decsep, ".") + '\n');
+            if (GridHasXYGrading)
+            {
+                x = (
+            "Mesh DX min:                        " + Program.DDXMIN.ToString("0.0").Replace(decsep, ".") + '\n' +
+            "Mesh DY max:                        " + Program.DDXMAX.ToString("0.0").Replace(decsep, ".") + '\n' +
+            "Mesh DX min:                        " + Program.DDYMIN.ToString("0.0").Replace(decsep, ".") + '\n' +
+            "Mesh DY max:                        " + Program.DDYMAX.ToString("0.0").Replace(decsep, ".") + '\n');
+
+            }
+            Console.WriteLine(
+                "\n\n" +
+                "First cell height                   " + (Program.Z[2] - Program.Z[1]).ToString("0.00").Replace(decsep, ".") + '\n' +
+                // "Vertical streching factor:          " + Program.ADZ.ToString("0.0000").Replace(decsep, ".") + '\n' +
+                // "Nr. smoothed border cells:          " + Program.SmoothBorderCellNr.ToString() + '\n' +
+                // "Nr. ground constant height cells:   " + Program.NrConstantHeightCells.ToString() + '\n' +
+                "Model Domain West border:           " + Program.IKOOA + '\n' +
+                "Model Domain East border:           " + Program.IKOOE + '\n' +
+                "Model Domain South border:          " + Program.JKOOA + '\n' +
+                "Model Domain North border:          " + Program.JKOOE + '\n' +
+                "Grid rotation:                      " + Program.GridRotation.ToString("0.0").Replace(decsep, ".") + "°\n" +
+                "Mesh NY:                            " + Program.NX + '\n' +
+                "Mesh NY:                            " + Program.NY + '\n' +
+                "Mesh NZ:                            " + Program.NZ + '\n' +
+                "Mesh size:                          " + (Program.NX * Program.NY * Program.NZ) + '\n' +
+                "X-Y grid has grading:               " + GridHasXYGrading.ToString() + '\n' + x
+            );
+
 
             //definition of vertical cells of the soil model
             double DZB0 = 0.02 / 2.3;
