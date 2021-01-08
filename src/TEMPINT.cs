@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 ///<remarks>
 /// <GRAMM Mesoscale Model>
 /// Copyright (C) [2019]  [Dietmar Oettl, Markus Kuntner]
