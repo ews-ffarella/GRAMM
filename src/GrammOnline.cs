@@ -25,6 +25,11 @@ namespace GRAMM_2001
             string config2 = "";
             string filename = "";
 
+            if (GridHasXYGrading) // 11.4.17 Ku - do not write GRAMM Online for grid x-y grading TODO: Maybe later?
+            {
+                return;
+            }
+
             if (IWetter_Console_First > 1) // 11.4.17 Ku - do not write GRAMM Online for multiple instances
             {
                 return;
