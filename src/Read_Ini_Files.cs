@@ -831,10 +831,12 @@ namespace GRAMM_2001
                 Console.WriteLine("File 'TURBIN.dat' not found - Using default K-epsilon values");
             }
 
+            Console.WriteLine("  Von karman constant:        " + Program.CK.ToString().Replace(decsep, "."));
+            Console.WriteLine("  Turbulence Prandlt number:  " + Program.PRTE.ToString().Replace(decsep, "."));
             Console.WriteLine("  K-epsilon constants: ");
-            Console.WriteLine("  Cmu:                 " + Program.CMU.ToString());
-            Console.WriteLine("  Cepsilon1:           " + Program.CEPSILON1.ToString());
-            Console.WriteLine("  Cepsilon2:           " + Program.CEPSILON2.ToString());
+            Console.WriteLine("  Cmu:                        " + Program.CMU.ToString().Replace(decsep, "."));
+            Console.WriteLine("  Cepsilon1:                  " + Program.CEPSILON1.ToString().Replace(decsep, "."));
+            Console.WriteLine("  Cepsilon2:                  " + Program.CEPSILON2.ToString().Replace(decsep, "."));
         }
 
         private static void Read_Probes_Dat()
