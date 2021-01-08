@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 ///<remarks>
 /// <GRAMM Mesoscale Model>
 /// Copyright (C) [2019] [Dietmar Oettl, Markus Kuntner]
@@ -63,7 +63,7 @@ namespace GRAMM_2001
             Console.WriteLine("");
             Console.WriteLine("+------------------------------------------------------+");
             Console.WriteLine("|                                                      |");
-            string Info =     "+         > > G R A M M VERSION: 20.09    < <          +";
+            string Info = "+         > > G R A M M VERSION: 20.09    < <          +";
             Console.WriteLine(Info);
             if (unix)
             {
@@ -250,7 +250,7 @@ Console.WriteLine("| .Net Core Version |");
             ProgramWriters.LogfileGrammCoreInfo();
 
             // init radiation model 
-            RadiationModel = new RadiationCalculation(); 
+            RadiationModel = new RadiationCalculation();
 
         //Loop_______________________________________________________________________________________________
         NEXTWEATHERSITUATION:
