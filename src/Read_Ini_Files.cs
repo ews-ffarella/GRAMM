@@ -61,8 +61,9 @@ namespace GRAMM_2001
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 Console.WriteLine("Error when reading domain data from file 'GRAMM.geb' - Execution stopped - press ESC to continue");
                 while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)) ;
                 Environment.Exit(0);
@@ -91,8 +92,9 @@ namespace GRAMM_2001
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 Console.WriteLine("Error when reading file 'chemistry.txt' - Execution stopped - press ESC to continue");
                 while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)) ;
                 Environment.Exit(0);
@@ -484,8 +486,9 @@ namespace GRAMM_2001
                     }
                 }
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 Console.WriteLine("File 'IIN.dat' not found - Execution stopped  - press ESC to continue");
                 while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)) ;
                 Environment.Exit(0);
@@ -589,8 +592,9 @@ namespace GRAMM_2001
                             }
                         }
                     }
-                    catch
+                    catch (Exception e)
                     {
+                        Console.WriteLine(e.Message);
                         Console.WriteLine("Error when reading receptor data from file 'Receptor_GRAMM.dat' - Execution stopped - press ESC to continue");
                         while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)) ;
                         Environment.Exit(0);
@@ -957,8 +961,9 @@ namespace GRAMM_2001
                             }
                         }
                     }
-                    catch
+                    catch (Exception e)
                     {
+                        Console.WriteLine(e.Message);
                         Console.WriteLine("Error when reading probes data from file 'Probes_GRAMM.dat' - Execution stopped - press ESC to continue");
                         while (!(Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Escape)) ;
                         Environment.Exit(0);
@@ -982,8 +987,9 @@ namespace GRAMM_2001
                 }
 
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
             }
             Console.WriteLine("  Number of probe points: " + Xprobe.Count().ToString());
         }
