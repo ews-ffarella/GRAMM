@@ -475,9 +475,9 @@ namespace GRAMM_2001
                 {
                     windexpon = 0.56 * Math.Pow(Program.Obini, -0.15);
                 }
-
                 //computation of boundary-layer height (Hanna 1982)
-                USTinit = (WINDGE + 0.15) * 0.35 / Math.Log((Program.ZSP[3][3][1] - Program.AH[3][3]) / Program.Rauigkeit);
+                USTinit = Program.CK * WINDGE / Math.Log((Program.ANEMO - Program.Rauigkeit) / Program.Rauigkeit);
+
                 if ((Program.Obini >= 0) && (Program.Obini < 100))
                     blh0 = Math.Min(0.4 * Math.Sqrt(USTinit * Program.Obini / Program.FN), 2000);
                 else if ((Program.Obini < 0) && (Program.Obini > -100))
@@ -485,8 +485,47 @@ namespace GRAMM_2001
                 else
                     blh0 = Math.Min(0.2 * USTinit / Program.FN, 2000);
                 blh = blh0;
+                Console.WriteLine("Reference height:              " + Convert.ToString(Math.Round(Program.ANEMO, 2)) + "m");
                 Console.WriteLine("Initial Boundary-Layer height: " + Convert.ToString(Math.Round(blh0, 0)) + "m");
-                Console.WriteLine("Fricition velocity: " + Convert.ToString(Math.Round(USTinit, 2)) + "m/s");
+                Console.WriteLine("Friction velocity:             " + Convert.ToString(Math.Round(USTinit, 4)) + "m/s");
+
+                /*
+                double TURBIN = 0.01;
+                Parallel.For(1, NI + 1, Program.pOptions, i =>
+                    {
+                        for (int j = 1; j <= NJ; j++)
+                        {
+                            double[] TE_L = Program.TE[i][j];
+                            double[] TEN_L = Program.TEN[i][j];
+                            double[] DISS_L = Program.DISS[i][j];
+                            double[] DISSN_L = Program.DISSN[i][j];
+                            double[] VISH_L = Program.VISH[i][j];
+                            double[] VISV_L = Program.VISV[i][j];
+                            float[] ZSP = Program.ZSP[i][j];
+                            double AH = (double)Program.AH[i][j];
+              
+                            for (int k = 1; k <= NK; k++)
+                            {
+                                // Iref = (2*k/3)**0.5 / Uref
+                                // k = (Iref * Uref)**2.0 * 3 / 2 
+                                // factor used to initialize turbulent kinetic energy
+
+                                //turbulent kinetic energy
+                                TE_L[k] = USTinit * USTinit / Math.Sqrt(Program.CMU);
+                                TEN_L[k] = USTinit * USTinit / Math.Sqrt(Program.CMU);
+                                //dissipation
+                                if (k > 1) {
+                                    DISS_L[k] = USTinit * USTinit * USTinit / (Program.CK * (double)ZSP[k] - AH);
+                                    DISSN_L[k] = USTinit * USTinit * USTinit / (Program.CK * (double)ZSP[k] - AH);
+                                } else {
+                                    DISS_L[k] = 0.0001F;
+                                    DISSN_L[k] = 0.0001F;
+                                }
+                            }
+                        }                    
+                    }
+                );
+                */
 
                 //vertical temperature profile if (Program.AKLA==7)
                 Inversion_Height = 400;
