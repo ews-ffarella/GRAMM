@@ -218,6 +218,7 @@ namespace GRAMM_2001
                     {
                         Program.Soilheatfluxrec[ianz] = 0.0;
                     }
+                    // TODO: Fix for horizontal mesh grading
                     Program.Longradrec[ianz] += (Program.RL[Program.inrec[ianz]][Program.jnrec[ianz]] - Program.EPSG[Program.inrec[ianz]][Program.jnrec[ianz]] * Program.SIGMA * Pow4(Program.TB[Program.inrec[ianz]][Program.jnrec[ianz]][2])) * Program.DT / 3600;
                     Program.Sensheatfluxrec[ianz] += Program.WQU[Program.inrec[ianz]][Program.jnrec[ianz]] / Program.DDX[1] / Program.DDY[1] * Program.DT / 3600;
                     double ALW1 = Program.ALW - 2300 * (Program.TB[Program.inrec[ianz]][Program.jnrec[ianz]][2] - 273.15);
