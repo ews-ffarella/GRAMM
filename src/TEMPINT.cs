@@ -1,4 +1,4 @@
-﻿#region Copyright
+#region Copyright
 ///<remarks>
 /// <GRAMM Mesoscale Model>
 /// Copyright (C) [2019]  [Dietmar Oettl, Markus Kuntner]
@@ -276,9 +276,9 @@ namespace GRAMM_2001
                 Console.WriteLine("Stability class: " + Convert.ToString(Program.AKLA));
 
                 //The simulation time is modified according to the stability class and wind speed
-                if (Program.TLIMIT2 < 0)
+                if (Program.TLIMIT2 < -1) // We force GRAMM to use this ammount if seconds
                 {
-                    Program.TLIMIT = Math.Sqrt(Math.Pow(Program.DDX[3] * NI, 2) + Math.Pow(Program.DDY[3] * NJ, 2)) / WINDGE * -Program.TLIMIT2;
+                    Program.TLIMIT = -Program.TLIMIT2;
                     Program.DTI = Program.TLIMIT;
                 }
                 else if (Program.TLIMIT2 < 1)
