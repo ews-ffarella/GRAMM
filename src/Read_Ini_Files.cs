@@ -810,6 +810,14 @@ namespace GRAMM_2001
                             text[1] = text[1].Trim();
                             text[1] = text[1].Replace(".", decsep);
                             Program.CEPSILON2 = Convert.ToDouble(text[1]);
+                            text = myreader.ReadLine().Split(new char[] { '!', ':' });
+                            text[1] = text[1].Trim();
+                            text[1] = text[1].Replace(".", decsep);
+                            Program.CK = Convert.ToDouble(text[1]);
+                            text = myreader.ReadLine().Split(new char[] { '!', ':' });
+                            text[1] = text[1].Trim();
+                            text[1] = text[1].Replace(".", decsep);
+                            Program.PRTE = Convert.ToDouble(text[1]);
                         }
                     }
                 }
