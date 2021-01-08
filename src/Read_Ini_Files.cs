@@ -521,8 +521,33 @@ namespace GRAMM_2001
                                 double _xrec = Convert.ToDouble(text[1].Replace(".", decsep));
                                 double _yrec = Convert.ToDouble(text[2].Replace(".", decsep));
                                 double _zrec = Convert.ToDouble(text[3].Replace(".", decsep));
-                                int _inrec = Convert.ToInt32(Math.Floor((_xrec - IKOOA) / DDX[1]) + 1);
-                                int _jnrec = Convert.ToInt32(Math.Floor((_yrec - JKOOA) / DDY[1]) + 1);
+                                int _inrec = 0;
+                                int _jnrec = 0;
+                                double _xrec_off = _xrec - IKOOA;
+                                double _yrec_off = _yrec - JKOOA;
+                                double search = 0;
+                                for (int i = 1; i <= NX; i++)
+                                {
+                                    if (_xrec_off < search)
+                                    {
+                                        _inrec = i;
+                                        break;
+                                    }
+                                    search = search + DDX[i];
+                                }
+                                if (_inrec > 0)
+                                {
+                                    search = 0;
+                                    for (int i = 1; i <= NY; i++)
+                                    {
+                                        if (_yrec_off < search)
+                                        {
+                                            _jnrec = i;
+                                            break;
+                                        }
+                                        search = search + DDY[i];
+                                    }
+                                }
                                 n++;
 
                                 if ((_inrec >= NX) || (_inrec <= 0))
@@ -871,8 +896,34 @@ namespace GRAMM_2001
                                 double _xprobe = Convert.ToDouble(text[1].Replace(".", decsep));
                                 double _yprobe = Convert.ToDouble(text[2].Replace(".", decsep));
                                 double _zprobe = Convert.ToDouble(text[3].Replace(".", decsep));
-                                int _inprobe = Convert.ToInt32(Math.Floor((_xprobe - IKOOA) / DDX[1]) + 1);
-                                int _jnprobe = Convert.ToInt32(Math.Floor((_yprobe - JKOOA) / DDY[1]) + 1);
+
+                                int _inprobe = 0;
+                                int _jnprobe = 0;
+                                double _xprobe_off = _xprobe - IKOOA;
+                                double _yprobe_off = _yprobe - JKOOA;
+                                double search = 0;
+                                for (int i = 1; i <= NX; i++)
+                                {
+                                    if (_xprobe_off < search)
+                                    {
+                                        _inprobe = i;
+                                        break;
+                                    }
+                                    search = search + DDX[i];
+                                }
+                                if (_inprobe > 0)
+                                {
+                                    search = 0;
+                                    for (int i = 1; i <= NY; i++)
+                                    {
+                                        if (_yprobe_off < search)
+                                        {
+                                            _jnprobe = i;
+                                            break;
+                                        }
+                                        search = search + DDY[i];
+                                    }
+                                }
                                 n++;
 
                                 if ((_inprobe >= NX) || (_inprobe <= 0))
