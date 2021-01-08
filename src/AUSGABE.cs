@@ -40,8 +40,8 @@ namespace GRAMM_2001
                         writesteadystate = new StreamWriter(filename);
                         writesteadystate.WriteLine("ncols         " + Convert.ToString(NI - 2 * Program.nr_cell_smooth));
                         writesteadystate.WriteLine("nrows         " + Convert.ToString(NJ - 2 * Program.nr_cell_smooth));
-                        writesteadystate.WriteLine("xllcorner     " + Convert.ToString(Program.IKOOA + Program.nr_cell_smooth * Program.DDX[1]));
-                        writesteadystate.WriteLine("yllcorner     " + Convert.ToString(Program.JKOOA + Program.nr_cell_smooth * Program.DDX[1]));
+                        writesteadystate.WriteLine("xllcorner     " + Convert.ToString(Program.IKOOA + Program.nr_cell_smooth * Program.DDX[1])); // TODO: Fix for horizontal mesh grading
+                        writesteadystate.WriteLine("yllcorner     " + Convert.ToString(Program.JKOOA + Program.nr_cell_smooth * Program.DDX[1])); // TODO: Fix for horizontal mesh grading
                         writesteadystate.WriteLine("cellsize      " + Convert.ToString(Program.DDX[1]));
                         writesteadystate.WriteLine("NODATA_value  " + "-9999");
                     }
@@ -181,7 +181,8 @@ namespace GRAMM_2001
             Int16 dummy;
             Int32 dummy2;
             float GRAMMhorgridsize = (float)Program.DDX[1];
-
+            
+             // TODO: Not possible with horizontal mesh grading
             if (writeExtra)
             {
                 Console.Write(wndExtrafilename + "  "); // write windfile name to the console
