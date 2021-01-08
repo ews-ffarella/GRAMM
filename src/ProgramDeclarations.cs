@@ -30,6 +30,10 @@ namespace GRAMM_2001
         ///</summary>
         public static string decsep;
         ///<summary>
+        ///Does the grid have horizontal grading
+        ///</summary>
+        public static bool GridHasXYGrading = false;
+        ///<summary>
         ///number of cells in x-direction
         ///</summary>
         public static Int32 NX;
@@ -137,10 +141,32 @@ namespace GRAMM_2001
         ///Horizontal grid size in x-direction
         ///</summary>
         public static float[] DDX = new float[1];
+
         ///<summary>
-        ///Horizontal grid size in y-direction
+        ///Minimal Horizontal grid size in y-direction
         ///</summary>
         public static float[] DDY = new float[1];
+
+        ///<summary>
+        ///Minimal horizontal grid size in x-direction
+        ///</summary>
+        public static float DDXMIN;
+
+        ///<summary>
+        ///Maximal horizontal grid size in y-direction
+        ///</summary>
+        public static float DDXMAX;
+
+        ///<summary>
+        ///Minimal horizontal grid size in y-direction
+        ///</summary>
+        public static float DDYMIN;
+
+        ///<summary>
+        ///Maximal horizontal grid size in y-direction
+        ///</summary>
+        public static float DDYMAX;
+
         ///<summary>
         ///Distance between neighbouring grid cells in x-direction
         ///</summary>
@@ -584,7 +610,7 @@ namespace GRAMM_2001
         ///</summary>
         public static float[][] ZI = CreateArray<float[]>(1, () => new float[1]);
         ///<summary>
-        ///Fricition velocity
+        ///Friction velocity
         ///</summary>
         public static double[][] UST = CreateArray<double[]>(1, () => new double[1]);
         ///<summary>
@@ -1186,6 +1212,17 @@ namespace GRAMM_2001
         ///</summary>
         public static Int32 JKOOA;
         ///<summary>
+        ///Eastern border of model domain
+        ///</summary>
+        public static Int32 IKOOE;
+        ///<summary>
+        ///Northern border of model domain
+        ///</summary>
+        public static Int32 JKOOE;
+        ///Grid rotation angle (in degrees)
+        ///</summary>
+        public static double GridRotation;
+        ///<summary>
         ///Minimum surface elevation
         ///</summary>
         public static float AHMIN;
@@ -1344,7 +1381,7 @@ namespace GRAMM_2001
         ///<summary>
         /// van Karman constant
         ///</summary>
-        public static double CK;
+        public static double CK = 0.35;
         ///<summary>
         ///minimum turbulent viscosity
         ///</summary>
@@ -1400,7 +1437,7 @@ namespace GRAMM_2001
         ///<summary>
         ///turbulent Prandtl-number
         ///</summary>
-        public static double PRTE;
+        public static double PRTE = 0.9;
 
         ///<summary>
         ///Flag switching the computation of the u-component on/off
