@@ -1,4 +1,4 @@
-#region Copyright
+﻿#region Copyright
 ///<remarks>
 /// <GRAMM Mesoscale Model>
 /// Copyright (C) [2019] [Dietmar Oettl, Markus Kuntner]
@@ -509,6 +509,11 @@ Console.WriteLine("| .Net Core Version |");
                             W_TEMP[i][j] = (float)(W[i][j][1]);
                         }
                     });
+                }
+                //Online output of fields for GUI
+                if ((ITIME % 50d) == 0)
+                {
+                    OUTPUT(NX, NY, NZ, false);
                 }
             }
 
