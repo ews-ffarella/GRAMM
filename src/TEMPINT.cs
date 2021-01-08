@@ -234,8 +234,17 @@ namespace GRAMM_2001
                                 }
                                 //in case of higher wind speed initialization, the divergence increases at large time steps
                                 if (WINDGE > 0.2) //3.4.2017 Ku
-                                {   // max time step = Rastersize/4/Windge
-                                    Program.DTMAX = Math.Min(Program.DTMAX, Math.Max(1.5, Program.DDX[1] * 0.25 / WINDGE)); //3.4.2017 Ku
+                                {   // max time step = Rastersize/4/Windge                                
+                                    // TODO: Fix for horizontal mesh grading
+                                    Program.DTMAX = Math.Min(
+                                        Program.DTMAX,
+                                        Math.Max(
+                                            1.5,
+                                            Math.Max(
+                                                Program.DDYMIN * 0.25 / WINDGE,
+                                                Program.DDXMIN * 0.25 / WINDGE)
+                                            )
+                                    ); //3.4.2017 Ku
                                 }
                                 // in case of a retry
                                 if (Program.computation_retry > 0)
