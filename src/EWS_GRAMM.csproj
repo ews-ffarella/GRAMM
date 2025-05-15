@@ -1,0 +1,38 @@
+﻿<!-- <Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>EWS_GRAMM</AssemblyName>
+    <RootNamespace>GRAMM</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+  </PropertyGroup>
+
+</Project> -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <VersionPrefix>23.11.0</VersionPrefix>
+    <Authors>Fabien Farella</Authors>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <AssemblyTitle>EWS_GRAMM</AssemblyTitle>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <RetainVMGarbageCollection>false</RetainVMGarbageCollection>
+    <Optimize>true</Optimize>
+    <TieredCompilation>false</TieredCompilation>
+    <TieredCompilationQuickJit>false</TieredCompilationQuickJit>
+    <DOTNET_TC_QuickJitForLoops>false</DOTNET_TC_QuickJitForLoops>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <TieredPGO>false</TieredPGO>
+    <DOTNET_EnableDiagnostics>false</DOTNET_EnableDiagnostics>
+    <DOTNET_ENABLE_PROFILING>false</DOTNET_ENABLE_PROFILING>
+    <RetainVMGarbageCollection>false</RetainVMGarbageCollection>
+    <!-- 
+    <PublishAot>true</PublishAot>
+    -->
+  </PropertyGroup>
+</Project>

@@ -14,9 +14,29 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "build self contained exe",
+            "label": "build self contained exe Windows",
             "type": "shell",
-            "command": "dotnet publish src -r win10-x64 -c Release /p:PublishSingleFile=true /p:PublishTrimmed=true",
+            "command": "dotnet publish src --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true --self-contained true -p:IncludeNativeLibrariesForSelfExtract=true",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build release AOT for Windows",
+            "type": "shell",
+            "command": "dotnet publish src --runtime win-x64 --configuration Release",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build self contained exe Linux",
+            "type": "shell",
+            "command": "dotnet publish src --runtime linux-x64 --configuration Release /p:PublishSingleFile=true /p:PublishTrimmed=true",
             "group": {
                 "kind": "build",
                 "isDefault": true

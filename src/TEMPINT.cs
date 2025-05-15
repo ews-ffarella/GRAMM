@@ -285,7 +285,7 @@ namespace GRAMM_2001
                 Console.WriteLine("Stability class: " + Convert.ToString(Program.AKLA));
 
                 //The simulation time is modified according to the stability class and wind speed
-                if (Program.TLIMIT2 < -1) // We force GRAMM to use this ammount if seconds
+                if (Program.TLIMIT2 < -1) // We force GRAMM to use this amount if seconds
                 {
                     Program.TLIMIT = -Program.TLIMIT2;
                     Program.DTI = Program.TLIMIT;
@@ -497,6 +497,8 @@ namespace GRAMM_2001
                 Console.WriteLine("Reference height:              " + Convert.ToString(Math.Round(Program.ANEMO, 2)) + "m");
                 Console.WriteLine("Initial Boundary-Layer height: " + Convert.ToString(Math.Round(blh0, 0)) + "m");
                 Console.WriteLine("Friction velocity:             " + Convert.ToString(Math.Round(USTinit, 4)) + "m/s");
+                Console.WriteLine("TLIMIT2:                       " + Convert.ToString(Program.TLIMIT2) + "s");
+                Console.WriteLine("DTI:                           " + Convert.ToString(Program.DTI) + "s");
 
                 /*
                 double TURBIN = 0.01;

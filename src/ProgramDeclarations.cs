@@ -1711,17 +1711,17 @@ namespace GRAMM_2001
         public static Boolean tkeiniexist;
 
         ///<summary>
-        /// k-ε Cmu
+        /// k-ε Cmu (Launder and Spalding (1974))
         ///</summary>
         public static double CMU = 0.09;
 
         ///<summary>
-        /// k-ε Cε1
+        /// k-ε Cε1 (Launder and Spalding (1974))
         ///</summary>
         public static double CEPSILON1 = 1.44;
 
         ///<summary>
-        /// k-ε Cε2
+        /// k-ε Cε2 (Launder and Spalding (1974))
         ///</summary>
         public static double CEPSILON2 = 1.92;
 

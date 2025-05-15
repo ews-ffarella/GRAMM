@@ -4,12 +4,14 @@ build:
 
 .PHONY: publish
 publish: clean
-	dotnet publish src -r win10-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true
-	cp -f ./src/bin/Release/netcoreapp3.1/win10-x64/publish/GRAMM.exe ../ValidationCases/Bin
+	dotnet publish src --runtime win-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true
+	cp -f ./src/bin/Release/net8.0/win-x64/publish/EWS_GRAMM.exe ../ValidationCases/Bin
 
 .PHONY: publish_linux
 publish_linux:
-	dotnet publish src -r linux-x64 -c Release -p:PublishSingleFile=true -p:PublishTrimmed=true
+	dotnet publish src --runtime linux-x64 --configuration Release -p:PublishSingleFile=true -p:PublishTrimmed=true
+	sudo cp ./src/bin/Release/net8.0/linux-x64/publish/EWS_GRAMM /usr/local/bin
+	sudo chmod a+x /usr/local/bin/EWS_GRAMM
 
 .PHONY: clean
 clean:
@@ -29,10 +31,14 @@ test_clean:
 	
 
 .PHONY: test_a_coarse
-test_a_coarse: publish
-	./src/bin/Release/netcoreapp3.1/win10-x64/publish/GRAMM.exe "./test/Askervein_coarse" 1 7
+test_a_coarse: 
+	dotnet run --project ./src "../ValidationCases/Askervein_coarse" 1 1
 
 .PHONY: test_a_fine
 test_a_fine: publish
-	./src/bin/Release/netcoreapp3.1/win10-x64/publish/GRAMM.exe "./test/Askervein_fine" 1 7
+	./src/bin/Release/net8.0/win10-x64/publish/EWS_GRAMM.exe "./ValidationCases/Askervein_fine" 1 7
 	#dotnet run --project ./src "./test/Askervein_fine" 1 1
+
+.PHONY: test_gui
+test_gui: publish
+	dotnet run --project ./src "../ValidationCases/hwr" 1 1

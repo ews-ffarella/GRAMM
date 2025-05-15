@@ -771,13 +771,13 @@ namespace GRAMM_2001
                                 {
                                     Program.WriteSteadyState = true;
                                     if (iWetter == 1)
-                                        Console.WriteLine("Write _steady_state.txt: yes");
+                                        Console.WriteLine("Write_steady_state.txt: yes");
                                 }
                                 else
                                 {
                                     Program.WriteSteadyState = false;
                                     if (iWetter == 1)
-                                        Console.WriteLine("Write _steady_state.txt: no");
+                                        Console.WriteLine("Write_steady_state.txt: no");
                                 }
                             }
                             else
@@ -826,33 +826,33 @@ namespace GRAMM_2001
                     {
                         using (StreamReader myreader = new StreamReader(fs))
                         {
-                            string[] text = new string[10];
-                            text = myreader.ReadLine().Split(new char[] { '!', ':' });
-                            text[1] = text[1].Trim();
-                            text[1] = text[1].Replace(".", decsep);
-                            Program.CMU = Convert.ToDouble(text[1]);
-                            text = myreader.ReadLine().Split(new char[] { '!', ':' });
-                            text[1] = text[1].Trim();
-                            text[1] = text[1].Replace(".", decsep);
-                            Program.CEPSILON1 = Convert.ToDouble(text[1]);
-                            text = myreader.ReadLine().Split(new char[] { '!', ':' });
-                            text[1] = text[1].Trim();
-                            text[1] = text[1].Replace(".", decsep);
-                            Program.CEPSILON2 = Convert.ToDouble(text[1]);
-                            text = myreader.ReadLine().Split(new char[] { '!', ':' });
-                            text[1] = text[1].Trim();
-                            text[1] = text[1].Replace(".", decsep);
-                            Program.CK = Convert.ToDouble(text[1]);
-                            text = myreader.ReadLine().Split(new char[] { '!', ':' });
-                            text[1] = text[1].Trim();
-                            text[1] = text[1].Replace(".", decsep);
-                            Program.PRTE = Convert.ToDouble(text[1]);
+                            string[] text = new string[64];
+                            text = myreader.ReadLine().Split(new char[] { '!' });
+                            text[0] = text[0].Trim();
+                            text[0] = text[0].Replace(".", decsep);
+                            Program.CMU = Convert.ToDouble(text[0]);
+                            text = myreader.ReadLine().Split(new char[] { '!' });
+                            text[0] = text[0].Trim();
+                            text[0] = text[0].Replace(".", decsep);
+                            Program.CEPSILON1 = Convert.ToDouble(text[0]);
+                            text = myreader.ReadLine().Split(new char[] { '!' });
+                            text[0] = text[0].Trim();
+                            text[0] = text[0].Replace(".", decsep);
+                            Program.CEPSILON2 = Convert.ToDouble(text[0]);
+                            text = myreader.ReadLine().Split(new char[] { '!' });
+                            text[0] = text[0].Trim();
+                            text[0] = text[0].Replace(".", decsep);
+                            Program.CK = Convert.ToDouble(text[0]);
+                            text = myreader.ReadLine().Split(new char[] { '!' });
+                            text[0] = text[0].Trim();
+                            text[0] = text[0].Replace(".", decsep);
+                            Program.PRTE = Convert.ToDouble(text[0]);
                         }
                     }
                 }
                 catch
                 {
-                    Console.WriteLine("Failed reading 'TURBIN.dat' - Using default K-epsilon values");
+                    Console.WriteLine("Failed reading 'TURBIN.dat' - Using default K-epsilon values (Launder and Spalding (1974))");
                 }
             }
             else

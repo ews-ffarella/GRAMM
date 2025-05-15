@@ -63,11 +63,11 @@ namespace GRAMM_2001
             Console.WriteLine("");
             Console.WriteLine("+------------------------------------------------------+");
             Console.WriteLine("|                                                      |");
-            string Info = "+         > > G R A M M VERSION: 20.09    < <          +";
+            string Info =     "+         > > EWS_GRAMM VERSION: 25.05    < <          +";
             Console.WriteLine(Info);
             if (unix)
             {
-                Console.WriteLine("|                      L I N U X                     |");
+                Console.WriteLine("|                       L I N U X                      |");
             }
 #if NETCOREAPP2_1 || NETCOREAPP2_0 || NETCOREAPP3_0
 Console.WriteLine("| .Net Core Version |");
@@ -184,7 +184,7 @@ Console.WriteLine("| .Net Core Version |");
             ISTU = Convert.ToInt32(Math.Floor(ISTUNDE / 100d));
             IMIN = ISTUNDE - 100 * ISTU;
 
-            //Set flags for various compuation options
+            //Set flags for various computation options
             ICU = false;
             ICV = false;
             ICW = false;
@@ -548,7 +548,7 @@ Console.WriteLine("| .Net Core Version |");
         //licence GPL 3 terms
         static void ShowCopyright(string[] args)
         {
-            Console.WriteLine("[GRAMM] Copyright (C) <2019> <Dietmar Oettl, Markus Kuntner>");
+            Console.WriteLine("[EWS_GRAMM] Copyright (C) <2024> <Fabien Farella>");
             Console.WriteLine("This program comes with ABSOLUTELY NO WARRANTY; for details start GRAMM with a startup parameter ‘show_w’");
             Console.WriteLine("This is free software, and you are welcome to redistribute it under certain conditions; start GRAMM with a startup parameter ‘show_c’ for details. )");
 
@@ -573,9 +573,9 @@ Console.WriteLine("| .Net Core Version |");
             {
                 if (args[0].Contains("?") == true || args[0].ToUpper().Contains("HELP") == true) // Info & stop
                 {
-                    Console.WriteLine("GRAMM console arguments: 'Working Directory' 'First Situation' 'Final Situation' 'Max. Time Step' 'RelaxV' 'RelaxT'");
+                    Console.WriteLine("EWS_GRAMM console arguments: 'Working Directory' 'First Situation' 'Final Situation' 'Max. Time Step' 'RelaxV' 'RelaxT'");
                     Console.WriteLine("or");
-                    Console.WriteLine("GRAMM console arguments: 'First Situation' 'Final Situation' 'Max. Time Step' 'RelaxV' 'RelaxT'");
+                    Console.WriteLine("EWS_GRAMM console arguments: 'First Situation' 'Final Situation' 'Max. Time Step' 'RelaxV' 'RelaxT'");
                     Environment.Exit(0);
                 }
 
